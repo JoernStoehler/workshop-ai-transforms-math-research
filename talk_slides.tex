@@ -39,6 +39,7 @@
 \titlepage
 \end{frame}
 
+
 % ==========================================
 % SECTION 1: Introduction (2 min)
 % ==========================================
@@ -74,7 +75,7 @@ Demo in ChatGPT.com
 
 \begin{center}
 \Large
-\textbf{Click:} \href{run:./papers/2005.14165_gpt3_language_models_few_shot.pdf}{\color{blue}GPT-3 Paper (Brown et al. 2020)}
+\textbf{Open:} \href{papers/2005.14165_gpt3_language_models_few_shot.pdf}{\color{blue}GPT-3 Paper (Brown et al. 2020)}\\\small{\texttt{papers/2005.14165\_gpt3\_language\_models\_few\_shot.pdf}}
 \end{center}
 
 \vspace{0.5cm}
@@ -82,7 +83,7 @@ Show:
 \begin{itemize}
     \item Figure 1.2: Performance vs parameters
     \item Figure 3.1: Zero/one/few-shot visual
-    \item Figure 3.8: LAMBADA (76\% → 86.4\%)
+    \item Figure 3.8: LAMBADA (76.2\% → 86.4\%)
 \end{itemize}
 
 \vspace{0.5cm}
@@ -105,15 +106,15 @@ Current & 2024 & $\sim$85\% & +1-5pp \\
 
 \begin{center}
 \Large
-\textbf{Click:} \href{run:./papers/2005.14165_gpt3_language_models_few_shot.pdf}{\color{blue}GPT-3 Paper - SuperGLUE}
+\textbf{Open:} \href{papers/2005.14165_gpt3_language_models_few_shot.pdf}{\color{blue}GPT-3 Paper - SuperGLUE}\\\small{\texttt{papers/2005.14165\_gpt3\_language\_models\_few\_shot.pdf}}
 \end{center}
 
 \vspace{1cm}
 
 Key Result:
 \begin{itemize}
-    \item GPT-3 (32-shot): 71.8\%
-    \item Fine-tuned BERT++: 69.8\%
+    \item GPT-3 (32-shot): 71.8\% (average)
+    \item Fine-tuned BERT++: 69.8\% (average)
     \item \textbf{No gradient updates needed!}
 \end{itemize}
 
@@ -174,20 +175,21 @@ Key Points:
 
 \begin{center}
 \Large
-\textbf{Click:} \href{run:./papers/2212.07677_transformers_gradient_descent.pdf}{\color{blue}von Oswald et al. 2022}
+\textbf{Open:} \href{papers/2212.07677_transformers_gradient_descent.pdf}{\color{blue}von Oswald et al. 2022}\\\small{\texttt{papers/2212.07677\_transformers\_gradient\_descent.pdf}}
 \end{center}
 
 \vspace{0.5cm}
 
-\begin{block}{Main Result}
+\begin{block}{von Oswald et al. 2022 - Key Result}
 \Large
+For linear self-attention on regression:
 \begin{equation*}
-\text{Linear Self-Attention} = a + \eta \cdot \nabla \mathcal{L}
+\text{Output} = \text{Input} + \eta \cdot \nabla_w \mathcal{L}
 \end{equation*}
 \end{block}
 
-\vspace{0.5cm}
-\textbf{Attention literally computes gradients!}
+\vspace{0.3cm}
+\textbf{Linear attention = exact gradient descent step}
 
 \begin{itemize}
     \item Single layer = one gradient step (exact!)
@@ -204,27 +206,27 @@ Key Points:
 \frametitle{What We've Found Inside}
 \framesubtitle{Mechanistic Interpretability}
 
-\textbf{1. Induction Heads} (Anthropic)
+\textbf{1. Pattern Completion}
 \begin{itemize}
-    \item Pattern completion circuits
-    \item Emerge at $\sim$2.5B tokens
-    \item \href{run:./papers/transformer_circuits_monosemantic_2023.md}{\color{blue}See visualization}
+    \item Attention patterns copy previous tokens
+    \item Demonstrated in GPT models
+    \item \textit{Note: Anthropic details online only}
 \end{itemize}
 
 \vspace{0.3cm}
 \textbf{2. Function Vectors} 
 \begin{itemize}
-    \item Tasks = directions in activation space
-    \item \href{run:./papers/2310.15213_function_vectors.pdf}{\color{blue}Todd et al. 2024}
-    \item Arithmetic: $v_{\text{translate}} + v_{\text{formal}} = v_{\text{formal translation}}$
+    \item Tasks encoded as activation directions
+    \item \href{papers/2310.15213_function_vectors.pdf}{\color{blue}Todd et al. 2024}
+    \item Can extract and compose task vectors
 \end{itemize}
 
 \vspace{0.3cm}
-\textbf{3. Superposition}
+\textbf{3. Multiple Capabilities}
 \begin{itemize}
-    \item Many "programs" in same weights
-    \item Examples select which program
-    \item \href{run:./papers/transformer_circuits_scaling_2024.md}{\color{blue}Anthropic 2024}
+    \item Models encode many tasks simultaneously
+    \item Context selects relevant circuits
+    \item Examples activate specific pathways
 \end{itemize}
 \end{frame}
 
@@ -234,29 +236,20 @@ Key Points:
 
 \begin{center}
 \Large
-\textbf{Click:} \href{run:./papers/2211.15661_learning_algorithm.pdf}{\color{blue}Akyürek et al. 2022}
+\textbf{Papers:} \href{papers/2211.15661_learning_algorithm.pdf}{\color{blue}Akyürek 2022} + \href{papers/2208.01066_what_can_transformers_learn.pdf}{\color{blue}Garg 2022}\\\small{\texttt{2211.15661 + 2208.01066}}
 \end{center}
 
 \vspace{0.5cm}
 
-\begin{center}
-\begin{tikzpicture}[scale=0.9]
-    \draw[->] (0,0) -- (12,0) node[right] {Depth};
-    \draw[->] (0,0) -- (0,4) node[above] {Algorithm};
-    
-    \draw[thick,blue] (1,1) -- (3,1.5) -- (5,2.5) -- (8,3.2) -- (11,3.5);
-    
-    \node at (2,0.5) {Gradient Descent};
-    \node at (6,2) {Ridge Regression};
-    \node at (10,3) {Bayesian Inference};
-    
-    \node[below] at (2,-0.3) {1-2 layers};
-    \node[below] at (6,-0.3) {3-6 layers};
-    \node[below] at (10,-0.3) {7+ layers};
-\end{tikzpicture}
-\end{center}
+\textbf{Akyürek et al. findings:}
+\begin{itemize}
+    \item 1 layer: Single gradient descent step
+    \item 2-3 layers: Multiple GD steps  
+    \item 4+ layers: Ridge regression emerges
+    \item Deep models: Approach closed-form solutions
+\end{itemize}
 
-\textbf{Phase transitions with depth!}
+\textit{Exact depth depends on task complexity}
 \end{frame}
 
 % ==========================================
@@ -267,26 +260,26 @@ Key Points:
 \frametitle{What Can Transformers Provably Do?}
 \framesubtitle{Mathematical Limits}
 
-\textbf{Proven Capabilities:}
+\textbf{What Papers Actually Prove:}
 \begin{enumerate}
-    \item \textbf{Gradient Descent} -- Exact implementation
-    \item \textbf{Ridge Regression} -- Medium depth
-    \item \textbf{Bayesian Inference} -- Deep networks
-    \item \textbf{Universal Computation} -- Turing complete!
+    \item \textbf{Linear attention = GD} -- \href{papers/2212.07677_transformers_gradient_descent.pdf}{\color{blue}von Oswald 2022}
+    \item \textbf{Can implement ridge} -- \href{papers/2211.15661_learning_algorithm.pdf}{\color{blue}Akyürek 2022}
+    \item \textbf{Learn linear functions} -- \href{papers/2208.01066_what_can_transformers_learn.pdf}{\color{blue}Garg 2022}
+    \item \textbf{Hard attention is Turing complete} -- \href{papers/1901.03429_turing_completeness.pdf}{\color{blue}Pérez 2019}
 \end{enumerate}
 
 \vspace{0.5cm}
 \textbf{Recent Result (2024):}
 \begin{itemize}
     \item Prompting itself is Turing-complete
-    \item \href{run:./papers/2411.01992_prompting_turing_complete.pdf}{\color{blue}Click for paper}
+    \item \href{papers/2411.01992_prompting_turing_complete.pdf}{\color{blue}Paper: Prompting is Turing-complete (2024)}
 \end{itemize}
 
 \vspace{0.5cm}
 \textbf{Memory Bounds:}
 \begin{itemize}
     \item $\Theta(n)$ capacity for $n$ examples
-    \item \href{run:./papers/2405.13718_memory_capacity.pdf}{\color{blue}Tian et al. 2024}
+    \item \href{papers/2405.13718_memory_capacity.pdf}{\color{blue}Tian et al. 2024}
 \end{itemize}
 \end{frame}
 
@@ -300,8 +293,7 @@ Key Points:
 
 \begin{center}
 \Large
-\textbf{Click:} \href{run:./papers/1906.01820_risks_learned_optimization.pdf}{\color{blue}Hubinger et al. 2019} | 
-\href{run:./papers/2309.05858_mesa_optimization.pdf}{\color{blue}von Oswald et al. 2023}
+\textbf{Papers (both needed):}\\\href{papers/1906.01820_risks_learned_optimization.pdf}{\color{blue}[1] Hubinger 2019 - Terminology}\\\href{papers/2309.05858_mesa_optimization.pdf}{\color{blue}[2] von Oswald 2023 - Evidence}\\\href{papers/2405.16845_mesa_optimization_emergence.pdf}{\color{blue}[3] Zheng 2024 - Emergence}
 \end{center}
 
 \vspace{0.5cm}
@@ -335,7 +327,7 @@ Time & Months & Single forward pass \\
 
 \begin{center}
 \Large
-\textbf{Click:} \href{run:./papers/2309.05858_mesa_optimization.pdf}{\color{blue}Uncovering Mesa-Optimization}
+\textbf{Open:} \href{papers/2309.05858_mesa_optimization.pdf}{\color{blue}Uncovering Mesa-Optimization}\\\small{\texttt{papers/2309.05858\_mesa\_optimization.pdf}}
 \end{center}
 
 \vspace{0.5cm}
@@ -431,7 +423,7 @@ Key findings:
 
 \begin{frame}
 \frametitle{Questions?}
-\framesubtitle{15-minute Q\&A}
+\framesubtitle{15-minute Q\&A -- Note: Some claims span multiple papers}
 
 \Large
 \textbf{Appendix Topics Available:}
@@ -446,12 +438,13 @@ Key findings:
 \end{itemize}
 
 \vspace{0.5cm}
-\textbf{Key Papers:}
+\textbf{Key Papers (all in papers/ folder):}
 \begin{itemize}
-    \item \href{run:./papers/2212.07677_transformers_gradient_descent.pdf}{\color{blue}von Oswald 2022} -- Gradient descent proof
-    \item \href{run:./papers/2309.05858_mesa_optimization.pdf}{\color{blue}von Oswald 2023} -- Mesa-optimization
-    \item \href{run:./papers/2211.15661_learning_algorithm.pdf}{\color{blue}Akyürek 2022} -- Algorithm identification
-    \item \href{run:./papers/1906.01820_risks_learned_optimization.pdf}{\color{blue}Hubinger 2019} -- Original mesa concept
+    \item \href{papers/2212.07677_transformers_gradient_descent.pdf}{\color{blue}von Oswald 2022} -- Gradient descent proof
+    \item \href{papers/2309.05858_mesa_optimization.pdf}{\color{blue}von Oswald 2023} -- Mesa-optimization
+    \item \href{papers/2211.15661_learning_algorithm.pdf}{\color{blue}Akyürek 2022} -- Algorithm identification  
+    \item \href{papers/2208.01066_what_can_transformers_learn.pdf}{\color{blue}Garg 2022} -- What transformers learn
+    \item \href{papers/1906.01820_risks_learned_optimization.pdf}{\color{blue}Hubinger 2019} -- Mesa terminology
 \end{itemize}
 \end{frame}
 
@@ -467,7 +460,7 @@ Key findings:
 \begin{itemize}
     \item Previous token head + induction head
     \item Implements $[A][B] \ldots [A] \rightarrow [B]$
-    \item \href{run:./papers/transformer_circuits_monosemantic_2023.md}{\color{blue}Anthropic analysis}
+    \item Anthropic (2023) - web article
 \end{itemize}
 
 \vspace{0.5cm}
@@ -475,7 +468,7 @@ Key findings:
 \begin{itemize}
     \item Extract monosemantic features
     \item Reveals superposition
-    \item \href{run:./papers/transformer_circuits_scaling_2024.md}{\color{blue}Scaling study}
+    \item Anthropic (2024) - scaling study
 \end{itemize}
 
 \vspace{0.5cm}
@@ -491,10 +484,11 @@ Key findings:
 \frametitle{A2: Statistical Learning Theory}
 \framesubtitle{Generalization Guarantees}
 
-\textbf{PAC Bounds via Stability:}
+\textbf{Generalization Theory:}
 \begin{itemize}
-    \item Excess risk: $|R(T) - \hat{R}(T)| \leq 2L\sqrt{\frac{\log(2/\delta)}{2M}}$
-    \item \href{run:./papers/mlr_press_li2023.md}{\color{blue}Li et al. 2023}
+    \item Transformers satisfy PAC-learning bounds
+    \item Algorithmic stability provides guarantees
+    \item \textit{Li et al. 2023 (ICML proceedings)}
 \end{itemize}
 
 \vspace{0.5cm}
@@ -502,14 +496,14 @@ Key findings:
 \begin{itemize}
     \item Sequence-length independent bounds
     \item Explains why models don't overfit to examples
-    \item \href{run:./papers/games_automata_vc_dimension.md}{\color{blue}Classical theory connection}
+    \item Classical theory (VC dimension, Rademacher)
 \end{itemize}
 
 \vspace{0.5cm}
-\textbf{Minimax Optimality:}
+\textbf{Statistical Optimality:}
 \begin{itemize}
-    \item Rate: $O(n^{-\beta/(2\beta+d)})$ for $\beta$-smooth functions
-    \item \href{run:./papers/2408.12186_minimax_optimal.pdf}{\color{blue}2024 result}
+    \item Achieves minimax rates for regression
+    \item \href{papers/2408.12186_minimax_optimal.pdf}{\color{blue}2024 paper}
 \end{itemize}
 \end{frame}
 
@@ -519,7 +513,7 @@ Key findings:
 
 \begin{center}
 \Large
-\textbf{Click:} \href{run:./papers/2503.11842_test_time_training.pdf}{\color{blue}Test-Time Training (2025)}
+\textbf{Paper:} \href{papers/2503.11842_test_time_training.pdf}{\color{blue}Test-Time Training (2025)}
 \end{center}
 
 \vspace{0.5cm}
@@ -542,11 +536,11 @@ Key findings:
 \frametitle{A4: Prompt Engineering Theory}
 \framesubtitle{Optimal Example Selection}
 
-\textbf{Determinantal Point Processes:}
+\textbf{Example Selection Theory:}
 \begin{itemize}
-    \item $P(S) \propto \det(K_S)$
-    \item Balances similarity and diversity
-    \item \href{run:./papers/acl_coverage_based_selection.md}{\color{blue}Coverage-based selection}
+    \item Coverage vs similarity tradeoff
+    \item Order matters for performance
+    \item \textit{Multiple papers on selection strategies}
 \end{itemize}
 
 \vspace{0.5cm}
@@ -554,7 +548,7 @@ Key findings:
 \begin{itemize}
     \item Entropy ordering works best
     \item 17-point improvement on compositional tasks
-    \item \href{run:./papers/2402.07927_prompt_engineering_survey.pdf}{\color{blue}Survey paper}
+    \item \href{papers/2402.07927_prompt_engineering_survey.pdf}{\color{blue}Survey paper}
 \end{itemize}
 
 \vspace{0.5cm}
@@ -562,7 +556,7 @@ Key findings:
 \begin{itemize}
     \item Natural language optimization
     \item 50\% improvement on reasoning
-    \item \href{run:./papers/2309.03409_llms_as_optimizers.pdf}{\color{blue}Yang et al. 2023}
+    \item \href{papers/2309.03409_llms_as_optimizers.pdf}{\color{blue}Yang et al. 2023}
 \end{itemize}
 \end{frame}
 
@@ -608,24 +602,24 @@ Key findings:
 
 \textbf{Core Papers:}
 \begin{itemize}
-    \item \href{run:./papers/2005.14165_gpt3_language_models_few_shot.pdf}{\color{blue}GPT-3} -- Original few-shot benchmarks
-    \item \href{run:./papers/2303.08774_gpt4_technical_report.pdf}{\color{blue}GPT-4} -- Modern performance
-    \item \href{run:./papers/2309.16583_gpt_fathom.pdf}{\color{blue}GPT-Fathom} -- Model comparisons
+    \item \href{papers/2005.14165_gpt3_language_models_few_shot.pdf}{\color{blue}GPT-3} -- Original few-shot benchmarks
+    \item \href{papers/2303.08774_gpt4_technical_report.pdf}{\color{blue}GPT-4} -- Modern performance
+    \item \href{papers/2309.16583_gpt_fathom.pdf}{\color{blue}GPT-Fathom} -- Model comparisons
 \end{itemize}
 
 \vspace{0.5cm}
 \textbf{Theory Papers:}
 \begin{itemize}
-    \item \href{run:./papers/1912.10077_universal_approximators.pdf}{\color{blue}Universal approximation}
-    \item \href{run:./papers/1901.03429_turing_completeness.pdf}{\color{blue}Turing completeness}
-    \item \href{run:./papers/2306.04637_transformers_statisticians.pdf}{\color{blue}Transformers as statisticians}
+    \item \href{papers/1912.10077_universal_approximators.pdf}{\color{blue}Universal approximation}
+    \item \href{papers/1901.03429_turing_completeness.pdf}{\color{blue}Turing completeness}
+    \item \href{papers/2306.04637_transformers_statisticians.pdf}{\color{blue}Transformers as statisticians}
 \end{itemize}
 
 \vspace{0.5cm}
-\textbf{Practical Guides:}
+\textbf{Practical Guides (web):}
 \begin{itemize}
-    \item \href{run:./papers/prompthub_few_shot_guide.md}{\color{blue}Few-shot prompting guide}
-    \item \href{run:./papers/analytics_vidhya_comparison.md}{\color{blue}Zero vs few-shot comparison}
+    \item PromptHub few-shot guide (see papers/*.md)
+    \item Analytics Vidhya comparison (see papers/*.md)
 \end{itemize}
 \end{frame}
 
